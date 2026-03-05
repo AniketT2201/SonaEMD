@@ -6,13 +6,12 @@ import { HashRouter as Router, Switch, Route, useLocation } from 'react-router-d
 
 import Sidebar from '../components/Pages/Sidebar';
 import { InitiatorDashboard } from '../components/Pages/InitiatorDashboard';
-// import NewRequest from './Pages/NewRequestForm';
-// import ApprovalDashboard from './Pages/ApprovalDashboard';
-// import APTeamLP from './Pages/APTeamLandingPage';
-// import TreasuryLandingPage from './Pages/TreasuryLandingPage';
-// import Editrequest from './Pages/NewRequestEditForm';
-// import ViewRequestForm from './Pages/NewRequestViewForm';
-// import ApprovalRequestForm from './Pages/ApprovalRequestForm';
+import MyRequests from './Pages/MyRequests';
+import ApprovalDashboard from './Pages/ApprovalDashboard';
+import APTeamDashboard from './Pages/APTeamDashboard';
+import ClosureApprovalARDashboard from './Pages/ClosureApprovalARDashboard';
+import EMDClosureDashboard from './Pages/EMDClosureDashboard';
+import TreasuryLandingPage from './Pages/TreasuryDashboard';
 
 const SonaEmd: React.FC<ISonaEmdProps> = (props) => {
   const {
@@ -38,13 +37,12 @@ const SonaEmd: React.FC<ISonaEmdProps> = (props) => {
         <div className="main">
           <Switch>
             <Route exact path="/" render={() => <InitiatorDashboard {...props} />} />
-            {/* <Route exact path="/NewRequest" render={() => <NewRequest {...props} />} />
-            <Route exact path="/ViewRequest/:Id" render={() => <ViewRequestForm {...props} />} />
-            <Route exact path="/EditRequest/:Id" render={() => <Editrequest {...props} />} />
-            <Route exact path="/ApprovalRequest/:Id" render={() => <ApprovalRequestForm {...props} />} />
+            <Route exact path="/MyRequests" render={() => <MyRequests {...props} />} />
             <Route exact path="/ApprovalDashboard" render={() => <ApprovalDashboard {...props} />} />
-            <Route exact path="/APTeamLandingPage" render={() => <APTeamLP {...props} />} />
-            <Route exact path="/TreasuryLandingPage" render={() => <TreasuryLandingPage {...props} />} /> */}
+            <Route exact path="/APTeamDashboard" render={() => <APTeamDashboard {...props} />} />
+            <Route exact path="/ClosureApprovalARDashboard" render={() => <ClosureApprovalARDashboard {...props} />} />
+            <Route exact path="/EMDClosureDashboard" render={() => <EMDClosureDashboard {...props} />} />
+            <Route exact path="/TreasuryLandingPage" render={() => <TreasuryLandingPage {...props} />} />
 
           </Switch>
         </div>

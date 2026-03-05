@@ -25,54 +25,54 @@ const Sidebar = (props: ISonaEmdProps) => {
    * Load tabs that the user has access to via SharePoint groups
    * --------------------------------------------------------- */
 
-  const loadTabsWithAccess = async () => {
-    try {
-      // Get current user's SharePoint groups
-      const userGroups = await sp.web.currentUser.groups();
-      const userGroupIds = userGroups.map(g => g.Id);
+  // const loadTabsWithAccess = async () => {
+  //   try {
+  //     // Get current user's SharePoint groups
+  //     const userGroups = await sp.web.currentUser.groups();
+  //     const userGroupIds = userGroups.map(g => g.Id);
 
-      // Get all tabs from "Tabing" list
-      const items: any[] = await sp.web.lists
-        .getByTitle("Tabing")
-        .items
-        .select(
-          "Id",
-          "Title",
-          "SeqNo",
-          "PageUrl",
-          "TabingViewGroup/Id",
-          "TabingViewGroup/Title"
-        )
-        .expand("TabingViewGroup")();
+  //     // Get all tabs from "Tabing" list
+  //     const items: any[] = await sp.web.lists
+  //       .getByTitle("Tabing")
+  //       .items
+  //       .select(
+  //         "Id",
+  //         "Title",
+  //         "SeqNo",
+  //         "PageUrl",
+  //         "TabingViewGroup/Id",
+  //         "TabingViewGroup/Title"
+  //       )
+  //       .expand("TabingViewGroup")();
 
-      // Filter tabs
-      const allowedTabs = items
-        .filter(tab => {
-          const groups = tab.TabingViewGroup || [];
+  //     // Filter tabs
+  //     const allowedTabs = items
+  //       .filter(tab => {
+  //         const groups = tab.TabingViewGroup || [];
 
-          // ✅ Public tab → no group assigned
-          if (groups.length === 0) return true;
+  //         // ✅ Public tab → no group assigned
+  //         if (groups.length === 0) return true;
 
-          // ✅ User belongs to group → show
-          return groups.some((g: any) => userGroupIds.includes(g.Id));
-        })
-        .map(tab => ({
-          id: tab.Id,
-          title: tab.Title,
-          seq: tab.SeqNo || 999,
-          url: tab.PageUrl ? tab.PageUrl.replace(/\s+/g, "") : ""
-        }))
-        .sort((a, b) => a.seq - b.seq);
+  //         // ✅ User belongs to group → show
+  //         return groups.some((g: any) => userGroupIds.includes(g.Id));
+  //       })
+  //       .map(tab => ({
+  //         id: tab.Id,
+  //         title: tab.Title,
+  //         seq: tab.SeqNo || 999,
+  //         url: tab.PageUrl ? tab.PageUrl.replace(/\s+/g, "") : ""
+  //       }))
+  //       .sort((a, b) => a.seq - b.seq);
 
-      setTabs(allowedTabs);
+  //     setTabs(allowedTabs);
 
-      if (allowedTabs.length > 0) {
-        setSelectedTabUrl(allowedTabs[0].url);
-      }
-    } catch (err) {
-      console.error("Load Tabs Error:", err);
-    }
-  };
+  //     if (allowedTabs.length > 0) {
+  //       setSelectedTabUrl(allowedTabs[0].url);
+  //     }
+  //   } catch (err) {
+  //     console.error("Load Tabs Error:", err);
+  //   }
+  // };
 
 
   // const loadTabsWithAccess = async () => {
@@ -151,7 +151,7 @@ const Sidebar = (props: ISonaEmdProps) => {
    * --------------------------------------------------------- */
 
   React.useEffect(() => {
-    loadTabsWithAccess();
+    //loadTabsWithAccess();
   }, []);
 
   return (
